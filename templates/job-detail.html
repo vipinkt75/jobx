@@ -1,0 +1,149 @@
+{% extends 'base.html' %} 
+{% load static crispy_forms_tags %}
+ {% block content %}
+
+<div class="container-xxl py-5 bg-dark page-header mb-5">
+  <div class="container my-5 pt-5 pb-4">
+    <h1 class="display-3 text-white mb-3 animated slideInDown">{{object.name}}</h1>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb text-uppercase">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+        <li class="breadcrumb-item text-white active" aria-current="page">
+          Job Detail
+        </li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+  <div class="container">
+    <div class="row gy-5 gx-4">
+      <div class="col-lg-8">
+        <div class="d-flex align-items-center mb-5">
+          <img
+            class="flex-shrink-0 img-fluid border rounded"
+            src="{{ object.image.url }}"
+            alt
+            style="width: 80px; height: 80px"
+          />
+          <div class="text-start ps-4">
+            <h3 class="mb-3">{{object.name}}</h3>
+            <span class="text-truncate me-3"
+              ><i class="fa fa-map-marker-alt text-primary me-2"></i
+              >{{object.location}}</span
+            >
+            <span class="text-truncate me-3"
+              ><i class="far fa-clock text-primary me-2"></i
+              >{{object.jobtype}}</span
+            >
+            <span class="text-truncate me-0"
+              ><i class="far fa-money-bill-alt text-primary me-2"></i
+              >${{object.salary}}</span
+            >
+          </div>
+        </div>
+        <div class="mb-5">
+          <h4 class="mb-3">Job description</h4>
+          <p>{{object.Job_description|linebreaks}}</p>
+          <h4 class="mb-3">Responsibility</h4>
+          <p>{{object.Responsibility|linebreaks}}</p>
+          <ul class="list-unstyled">
+            <li><i class="fa fa-angle-right text-primary me-2"></i></li>
+            <li><i class="fa fa-angle-right text-primary me-2"></i></li>
+            <li><i class="fa fa-angle-right text-primary me-2"></i></li>
+            <li><i class="fa fa-angle-right text-primary me-2"></i></li>
+            <li><i class="fa fa-angle-right text-primary me-2"></i></li>
+          </ul>
+          <h4 class="mb-3">Qualifications</h4>
+          <p>{{object.skills|linebreaks}}</p>
+        </div>
+        <div class>
+          <h4 class="mb-4">Apply For The Job</h4>
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+        
+            <div class="form-group">
+                {{ apply_form.job.label_tag }}
+                {{ apply_form.job }}
+            </div>
+               
+               <p id="jobdetail_email">{{ job_detail.sender_email }}</p>
+                
+       
+        
+            <div class="form-group">
+                {{ apply_form.name.label_tag }}
+                {{ apply_form.name }}
+            </div>
+        
+            <div class="form-group">
+                {{ apply_form.email.label_tag }}
+                {{ apply_form.email }}
+            </div>
+        
+            <div class="form-group">
+                {{ apply_form.website.label_tag }}
+                {{ apply_form.website }}
+            </div>
+        
+            <div class="form-group">
+                {{ apply_form.file.label_tag }}
+                <a href="{{ form_data.file.url }}">{{ apply_form.file }}</a>
+            </div>
+        
+            <br/>
+            <button type="submit" class="btn btn-primary w-100">Apply Now</button>
+        </form>
+        
+        
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div
+          class="bg-light rounded p-5 mb-4 wow slideInUp"
+          data-wow-delay="0.1s"
+        >
+          <h4 class="mb-4">Job Summery</h4>
+          <p>
+            <i class="fa fa-angle-right text-primary me-2"></i>Published On:
+            {{object.date_and_time}}
+          </p>
+          <p>
+  
+          <p>
+            <i class="fa fa-angle-right text-primary me-2"></i>Vacancy:
+            {{object.Vacancy}}
+          </p>
+          <p>
+            <i class="fa fa-angle-right text-primary me-2"></i>Job Nature:
+            {{object.jobtype}}
+          </p>
+          <p>
+            <i class="fa fa-angle-right text-primary me-2"></i>Salary:
+            ${{object.salary}}
+          </p>
+          <p>
+            <i class="fa fa-angle-right text-primary me-2"></i>Location:
+            {{object.location}}
+          </p>
+          <p>
+            <i class="fa fa-angle-right text-primary me-2"></i>Email:
+            {{object.sender_email}}
+          </p>
+          <p>
+            <i class="fa fa-angle-right text-primary me-2"></i>Job
+            qualification: {{object.qualification}}
+          </p>
+        </div>
+        <div class="bg-light rounded p-5 wow slideInUp" data-wow-delay="0.1s">
+          <h4 class="mb-4">Company Detail</h4>
+          <p class="m-0">{{object.company_detail}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

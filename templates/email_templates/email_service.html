@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f7f7f7; padding: 20px;">
+    <div style="background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <h2 style="color: #333333; margin-bottom: 20px;">Job Application Details</h2>
+        <p><strong>Job:</strong> {{ job }}</p>
+        <p><strong>Name:</strong> {{ name }}</p>
+        <p><strong>Email:</strong> {{ email }}</p>
+        <p><strong>Website:</strong> {{ website }}</p>
+        
+        <!-- Embed the file content as base64-encoded inline attachment -->
+        <p><strong>Attached File:</strong></p>
+        <p style="width: -10px;"><img src="data:image/png;base64,{{ file_data }}" alt="{{ file_name }}"> {{ file_name }}</p>
+       
+        <hr style="border: 1px solid #dddddd; margin: 20px 0;">
+        <p style="color: #555555;">Thank you for applying for the job. We will review your application and get in touch with you if needed.</p>
+        <p style="color: #555555;">Best regards,</p>
+        <p style="color: #555555;">The Hiring Team</p>
+    </div>
+</body>
+</html>
